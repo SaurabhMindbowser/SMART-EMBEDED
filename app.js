@@ -11,7 +11,7 @@ if (window.location.href.includes('code=') || window.location.href.includes('sta
             console.log('Access Token:', client.state.tokenResponse.access_token);
             console.log('Patient ID:', client.patient.id);
 
-            // Fetch Patient List (All patients)
+            // Fetch Patient List (Assuming you want all patients related to the provider or context)
             client.request(`Patient?_count=5`)  // Fetch 5 patients as an example
                 .then(patients => {
                     console.log('Fetched Patients:', patients);
@@ -24,11 +24,9 @@ if (window.location.href.includes('code=') || window.location.href.includes('sta
                         card.classList.add('patient-card');
                         card.innerHTML = `
                             <h3>${patient.resource.name[0].given.join(' ')} ${patient.resource.name[0].family}</h3>
-                            <p><strong>Gender:</strong> ${patient.resource.gender}</p>
                             <p><strong>Birth Date:</strong> ${patient.resource.birthDate}</p>
+                            <p><strong>Gender:</strong> ${patient.resource.gender}</p>
                             <p><strong>Address:</strong> ${patient.resource.address ? patient.resource.address[0].line.join(', ') : 'N/A'}</p>
-                            <p><strong>Contact:</strong> ${patient.resource.telecom ? patient.resource.telecom[0].value : 'N/A'}</p>
-                            <p><strong>Marital Status:</strong> ${patient.resource.maritalStatus ? patient.resource.maritalStatus.text : 'N/A'}</p>
                         `;
                         patientCards.appendChild(card);
                     });
@@ -42,14 +40,12 @@ if (window.location.href.includes('code=') || window.location.href.includes('sta
                 });
 
             // Fetch Provider Info (Practitioner)
-            // Assuming the provider ID is associated with the patient.
-            client.request(`Practitioner/${client.patient.providerId}`)  // Example: Fetch provider details
+            client.request(`Practitioner/${client.patient.providerId}`)  // Assuming you have provider ID in the patient's info
                 .then(provider => {
                     console.log('Fetched Provider:', provider);
                     document.getElementById('provider-name').textContent = provider.name[0].given.join(' ') + " " + provider.name[0].family;
                     document.getElementById('provider-specialty').textContent = provider.specialty ? provider.specialty.map(s => s.text).join(', ') : 'Not available';
                     document.getElementById('provider-location').textContent = provider.address ? provider.address[0].city : 'Not available';
-                    document.getElementById('provider-phone').textContent = provider.telecom ? provider.telecom[0].value : 'Not available';
 
                     document.getElementById('provider-info').style.display = 'block';
                 })
