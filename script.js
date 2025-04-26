@@ -1,7 +1,7 @@
 // Configuration for SMART on FHIR app
 const app = new SmartApp({
     client_id: '0be0b3ac-b0ae-40da-97a3-d74a4b66f3d7', // Replace with your client ID
-    redirect_uri: 'https://80d5-103-175-171-170.ngrok-free.app/callback', // Replace with your redirect URI
+    redirect_uri: 'https://5898-116-75-133-114.ngrok-free.app/callback', // Replace with your redirect URI
     scope: 'patient/*.read', // Make sure you have the appropriate scope
     fhirVersion: '4.0.1', // FHIR version to use
 });
