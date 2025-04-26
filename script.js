@@ -3,13 +3,10 @@ FHIR.oauth2.ready()
         console.log("SMART client ready:", client);
 
         if (!client.patient || !client.patient.id) {
-            throw new Error("No patient ID found in context.");
+            throw new Error("No patient ID found in context");
         }
 
-        // Now safely request patient
-        return client.request(`Patient/${client.patient.id}`, {
-            flat: true
-        });
+        return client.request(`Patient/${client.patient.id}`);
     })
     .then(function (patient) {
         console.log("Fetched patient:", patient);
@@ -22,16 +19,15 @@ FHIR.oauth2.ready()
         const birthDate = patient.birthDate || 'Unknown birth date';
 
         appDiv.innerHTML = `
-      <h2>Patient Information</h2>
-      <p><strong>Name:</strong> ${name}</p>
-      <p><strong>Gender:</strong> ${gender}</p>
-      <p><strong>Birth Date:</strong> ${birthDate}</p>
+        <h2>Patient Information</h2>
+        <p><strong>Name:</strong> ${name}</p>
+        <p><strong>Gender:</strong> ${gender}</p>
+        <p><strong>Birth Date:</strong> ${birthDate}</p>
     `;
     })
     .catch(function (error) {
-        console.error("Error fetching patient:", error);
+        console.error("Error loading patient:", error);
         document.getElementById('app').innerHTML = `
-      <h2>Error</h2>
-      <p>${error.message}</p>
+        <p><strong>Error loading patient data:</strong> ${error.message}</p>
     `;
     });
