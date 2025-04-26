@@ -1,26 +1,15 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f7f6;
     padding: 20px;
-  }
-  
-  #app {
-    max-width: 600px;
-    margin: 0 auto;
-    background: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-  }
-  
-  h1 {
-    color: #0075C9;
-    text-align: center;
-  }
-  
-  #status {
+}
+
+#status {
+    color: #333;
+    font-size: 18px;
+}
+
+#patient-info {
     margin-top: 20px;
-    font-weight: bold;
-    color: #444;
-  }
-  
+    padding: 10px;
+    border: 1px solid #ddd;
+}
