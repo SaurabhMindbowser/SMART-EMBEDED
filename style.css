@@ -1,15 +1,52 @@
 body {
     font-family: Arial, sans-serif;
+    background-color: #f4f7fc;
     padding: 20px;
+    margin: 0;
+    color: #333;
+}
+
+h1 {
+    text-align: center;
+    color: #4CAF50;
 }
 
 #status {
     color: #333;
     font-size: 18px;
+    text-align: center;
 }
 
 #patient-info {
     margin-top: 20px;
-    padding: 10px;
-    border: 1px solid #ddd;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+#patient-info h2 {
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+#patient-info p {
+    font-size: 16px;
+    line-height: 1.6;
+    margin: 10px 0;
+}
+
+#patient-info p strong {
+    color: #4CAF50;
+}
+
+#patient-info p span {
+    color: #555;
+}
+
+#patient-info p:last-child {
+    margin-bottom: 0;
 }
