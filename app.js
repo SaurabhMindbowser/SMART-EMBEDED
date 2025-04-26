@@ -2,7 +2,7 @@
 const smartSettings = {
     clientId: '0be0b3ac-b0ae-40da-97a3-d74a4b66f3d7', // Your Client ID
     scope: 'launch/patient patient/*.read openid profile offline_access', // Added openid, profile for Cerner
-    redirectUri: 'https://5898-116-75-133-114.ngrok-free.app/callback', // Your Redirect URI
+    redirectUri: 'https://saurabhmindbowser.github.io/SMART-EMBEDED/'
 };
 
 console.log('SMART App initializing...');
