@@ -17,34 +17,8 @@ h1 {
     text-align: center;
 }
 
-#patients-list {
+#patient-info {
     margin-top: 20px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-}
-
-.patient-card {
-    background-color: #fff;
-    border-radius: 8px;
-    padding: 15px;
-    width: calc(33% - 20px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    box-sizing: border-box;
-}
-
-.patient-card h3 {
-    margin: 0 0 10px;
-    font-size: 18px;
-    color: #4CAF50;
-}
-
-.patient-card p {
-    margin: 5px 0;
-}
-
-#provider-info {
-    margin-top: 30px;
     padding: 20px;
     background-color: #fff;
     border-radius: 8px;
@@ -53,20 +27,26 @@ h1 {
     margin: 0 auto;
 }
 
-#provider-info h2 {
-    font-size: 24px;
+#patient-info h2 {
     color: #333;
+    font-size: 24px;
+    margin-bottom: 20px;
 }
 
-#provider-info p {
+#patient-info p {
     font-size: 16px;
     line-height: 1.6;
+    margin: 10px 0;
 }
 
-#provider-info p strong {
+#patient-info p strong {
     color: #4CAF50;
 }
 
-#provider-info p span {
+#patient-info p span {
     color: #555;
+}
+
+#patient-info p:last-child {
+    margin-bottom: 0;
 }
