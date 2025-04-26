@@ -3,22 +3,24 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SMART on FHIR App</title>
+  <title>SMART on FHIR - Cerner App</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div id="smart-app-container">
-    <h1>SMART on FHIR App</h1>
-    <div id="patient-info">
-      <p><strong>Patient Name:</strong> <span id="patient-name">Loading...</span></p>
-      <p><strong>Patient DOB:</strong> <span id="patient-dob">Loading...</span></p>
-      <p><strong>Patient Gender:</strong> <span id="patient-gender">Loading...</span></p>
+  <div id="app">
+    <h1>Cerner SMART on FHIR App</h1>
+    <div id="status">Initializing...</div>
+
+    <div id="patient-info" style="display: none;">
+      <h2>Patient Information</h2>
+      <p><strong>Name:</strong> <span id="patient-name"></span></p>
+      <p><strong>DOB:</strong> <span id="patient-dob"></span></p>
+      <p><strong>Gender:</strong> <span id="patient-gender"></span></p>
     </div>
-    <button id="load-patient-data">Load Patient Data</button>
   </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/fhir.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/smart-on-fhir"></script>
+  <!-- SMART JS Client -->
+  <script src="https://cdn.jsdelivr.net/npm/fhirclient@2.7.2/build/fhir-client.min.js"></script>
   <script src="app.js"></script>
 </body>
 </html>

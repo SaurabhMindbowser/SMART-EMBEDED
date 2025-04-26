@@ -1,36 +1,56 @@
-// Configuration for SMART on FHIR app
-const app = new SmartApp({
-    client_id: '0be0b3ac-b0ae-40da-97a3-d74a4b66f3d7', // Replace with your client ID
-    redirect_uri: 'https://5898-116-75-133-114.ngrok-free.app/callback', // Replace with your redirect URI
-    scope: 'patient/*.read', // Make sure you have the appropriate scope
-    fhirVersion: '4.0.1', // FHIR version to use
+// SMART App configuration
+const smartSettings = {
+    clientId: '0be0b3ac-b0ae-40da-97a3-d74a4b66f3d7', // Your Client ID
+    scope: 'launch/patient patient/*.read openid profile offline_access', // Added openid, profile for Cerner
+    redirectUri: 'https://5898-116-75-133-114.ngrok-free.app/callback', // Your Redirect URI
+};
+
+console.log('SMART App initializing...');
+
+// Initiate authorization if needed
+FHIR.oauth2.authorize({
+    clientId: smartSettings.clientId,
+    scope: smartSettings.scope,
+    redirectUri: smartSettings.redirectUri
 });
 
-let patient = null;
+// After successful login
+FHIR.oauth2.ready().then(client => {
+    console.log('FHIR client is ready!');
+    console.log('Client Details:', client);
 
-// Function to fetch patient data after SMART on FHIR is initialized
-function fetchPatientData() {
-    // Check if the SMART app is ready
-    if (app.ready()) {
-        app.patient.read().then((patientData) => {
-            patient = patientData;
+    const statusDiv = document.getElementById('status');
+    statusDiv.textContent = 'Fetching patient data...';
 
-            // Display patient info
+    // Debugging Tokens
+    console.log('Access Token:', client.state.tokenResponse.access_token);
+    console.log('ID Token:', client.state.tokenResponse.id_token);
+    console.log('Patient ID:', client.patient.id);
+
+    if (!client.patient || !client.patient.id) {
+        console.error('No patient ID available.');
+        statusDiv.textContent = 'No patient ID found.';
+        return;
+    }
+
+    // Fetch patient data
+    client.request(`Patient/${client.patient.id}`)
+        .then(patient => {
+            console.log('Patient fetched:', patient);
+
             document.getElementById('patient-name').textContent = `${patient.name[0].given.join(' ')} ${patient.name[0].family}`;
             document.getElementById('patient-dob').textContent = patient.birthDate;
             document.getElementById('patient-gender').textContent = patient.gender;
 
-        }).catch((err) => {
-            console.error('Error fetching patient data:', err);
-            alert('Error fetching patient data. Please try again.');
+            document.getElementById('status').style.display = 'none';
+            document.getElementById('patient-info').style.display = 'block';
+        })
+        .catch(error => {
+            console.error('Error fetching patient:', error);
+            statusDiv.textContent = 'Error fetching patient. See console.';
         });
-    } else {
-        alert('SMART on FHIR app is not ready.');
-    }
-}
 
-// Listen to the button click to load patient data
-document.getElementById('load-patient-data').addEventListener('click', fetchPatientData);
-
-// Initialize the SMART app
-app.init();
+}).catch(error => {
+    console.error('FHIR client failed to initialize:', error);
+    document.getElementById('status').textContent = 'Initialization failed. See console.';
+});
