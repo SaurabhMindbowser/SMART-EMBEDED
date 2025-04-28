@@ -1,15 +1,52 @@
+/* Global styles */
 body {
     font-family: Arial, sans-serif;
-    padding: 20px;
+    background-color: #f4f7f6;
+    margin: 0;
+    padding: 0;
+    color: #333;
 }
 
-#status {
-    color: #333;
+/* Container */
+.container {
+    width: 90%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Header */
+header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+h1 {
+    font-size: 24px;
+    color: #4CAF50;
+}
+
+/* Status message */
+.status {
+    font-size: 18px;
+    color: #555;
+    text-align: center;
+}
+
+/* Patient info */
+.patient-info {
+    display: none;
     font-size: 18px;
 }
 
-#patient-info {
-    margin-top: 20px;
-    padding: 10px;
-    border: 1px solid #ddd;
+.patient-info p {
+    margin-bottom: 10px;
+}
+
+/* Styling for text */
+strong {
+    color: #4CAF50;
 }
